@@ -1,0 +1,44 @@
+@import mixins/defaults
+
+*
+  box-sizing: border-box
+
+body
+  font-family: 'Roboto Slab', serif
+
+#dropTarget
+  position: absolute
+  top: 0
+  bottom: 0
+  width: 100%
+
+#fileArea
+  display: flex
+  flex-wrap: wrap
+
+.job-container
+  display: flex
+  flex-wrap: wrap
+  width: 20%
+  padding: 10px
+  border-radius: 15px
+  +linear-gradient(#{top, #cedce7 0%, #596a72 100%})
+  
+  > .filename
+    width: auto
+    margin-right: auto
+  > .close
+    width: 20%
+    border: none
+    +linear-gradient(#{top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%})
+  > img.blend-logo
+    width: 100%
+    height: 175px
+    object-fit: contain
+  > .status
+    color: white
+    width: 75%
+    margin: 0
+  > img.download
+    width: 25%
+    height: 25px

@@ -1,0 +1,43 @@
+doctype HTML
+<html>
+head
+  title Render Tool
+  link(href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet")
+  link(rel="stylesheet" type="text/css" href="styles/main.css")
+body
+  div(id="dropTarget")
+    h1 Michael&#39;s Rendering Server
+    p #{(availableBytes / 1000000000).toFixed(2)} / #{(totalBytes / 1000000000).toFixed(2)} GB used. (#{(availableBytes / totalBytes * 100).toFixed(2)}%)
+    p Drag a blend file onto the webpage to begin rendering.
+    div#fileArea
+      each job in jobs
+        div.job-container
+          span.filename= job.filename
+          button.close X
+          img.blend-logo(src="img/blender-logo-25.png")
+          span.status= job.status
+          img.download(src="img/download-button.svg")
+  script(async data-main="js/main" src="js/require.js" type="text/javascript")
+  script(id="fileTemplate" type="text/template")
+    span.filename {filename}
+    button.close X
+    img(src="img/blender-logo-25.png")
+    span.status Uploading
+  script(id="jobData" type="application/json")
+    | {
+    |   "jobs": [
+    each job, i in jobs
+      | {
+      | "filename": "#{job.filename}",
+      | "status": "#{job.status}"
+      if i === jobs.length - 1
+        | }
+      else
+        | },
+    | ]
+    | }
+</html>
+//-
+  Credits:
+  download-button by Google
+  high-priority-button by Icons8 at http://icons8.com/
